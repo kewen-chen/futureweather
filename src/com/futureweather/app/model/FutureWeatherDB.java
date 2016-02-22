@@ -124,7 +124,7 @@ public class FutureWeatherDB {
 	/**
 	 * 从数据库读取某市所有县的信息
 	 */
-	public List<County> listCounty(int cityId) {
+	public List<County> listCounties(int cityId) {
 		List<County> list = new ArrayList<County>();
 		Cursor cursor = db.query("County", null, "city_id = ?",
 				new String[] { String.valueOf(cityId)}, null, null, null);
