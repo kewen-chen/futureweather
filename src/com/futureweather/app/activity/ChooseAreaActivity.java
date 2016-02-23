@@ -38,6 +38,8 @@ public class ChooseAreaActivity extends Activity {
 	
 	public static final int LEVEL_COUNTY = 2;
 	
+	public static final int LEVEL_WEATHER_LAYOUT = 3;
+	
 	private ProgressDialog progressDialog;
 	private TextView titleText;
 	private ListView listView;
@@ -118,6 +120,7 @@ public class ChooseAreaActivity extends Activity {
 					String countyCode = countyList.get(index).getCountyCode();
 					Intent intent = new Intent(ChooseAreaActivity.this,
 							WeatherActivity.class);
+					currentLevel = LEVEL_WEATHER_LAYOUT;
 					intent.putExtra("county_code", countyCode);
 					startActivity(intent);
 					finish();
@@ -282,7 +285,10 @@ public class ChooseAreaActivity extends Activity {
 	 */
 	@Override
 	public void onBackPressed() {
-		if(currentLevel == LEVEL_COUNTY) {
+		
+		if(currentLevel == LEVEL_WEATHER_LAYOUT) {
+			queryCounties();
+		}else if(currentLevel == LEVEL_COUNTY) {
 			queryCities();
 		}else if(currentLevel == LEVEL_CITY) {
 			queryProvinces();

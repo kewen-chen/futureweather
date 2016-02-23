@@ -105,6 +105,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 			SharedPreferences prefs = 
 					PreferenceManager.getDefaultSharedPreferences(this);
 			String weatherCode = prefs.getString("weather_code", "");
+Log.d("refresh_weatherCode", weatherCode);
 			if(!TextUtils.isEmpty(weatherCode)) {
 				queryWeatherInfo(weatherCode);
 			}
@@ -142,6 +143,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 				if("countyCode".equals(type)) {
 					if(!TextUtils.isEmpty(response)) {
 						//从服务器返回的信息中解析出天气代号
+Log.d("WeatherActivity", response);
 						String[] array = response.split("\\|");
 						if(array != null || array.length == 2) {
 							String weatherCode = array[1];
@@ -150,6 +152,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 					}
 				}else if("weatherCode".equals(type)) {
 					//处理服务器返回的天气信息
+Log.d("WeatherActivity", response);
 					Utility.handleWeatherResponse(WeatherActivity.this, response);
 				
 					runOnUiThread(new Runnable() {

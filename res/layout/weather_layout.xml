@@ -16,7 +16,7 @@
           android:layout_centerVertical="true"
           android:layout_marginLeft="10dp"
           android:textSize="8sp"
-          android:text="城市"
+          android:background="@drawable/home"
           />
         <TextView 
             android:id="@+id/city_name"
@@ -34,7 +34,7 @@
           android:layout_alignParentRight="true"
           android:layout_marginRight="10dp"
           android:textSize="8sp"
-          android:text="刷新"
+          android:background="@drawable/refreshr"
           />
     </RelativeLayout>
     
