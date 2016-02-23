@@ -25,6 +25,13 @@
         <activity 
             android:name="com.futureweather.app.activity.WeatherActivity"
             ></activity>
+        <service 
+            android:name="com.futureweather.app.service.AutoUpdateService"
+            ></service>
+        <receiver 
+            android:name="com.futureweather.app.receiver.AutoUpdateReceiver"
+            ></receiver>
+        
     </application>
 
 </manifest>
