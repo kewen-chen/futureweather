@@ -51,11 +51,11 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	/**
 	 * 用于显示切换城市
 	 */
-//	private Button switchCity;
+	private Button switchCity;
 	/**
 	 * 用于显示更新天气信息
 	 */
-//	private Button refreshWeather;
+	private Button refreshWeather;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +70,10 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		temp1 = (TextView) findViewById(R.id.temp1);
 		temp2 = (TextView) findViewById(R.id.temp2);
 		currentDateText = (TextView) findViewById(R.id.current_date);
-//		switchCity = (Button) findViewById(R.id.swtch_city);
-//		refreshWeather = (Button) findViewById(R.id.refresh_weather);
+		switchCity = (Button) findViewById(R.id.switch_city);
+		refreshWeather = (Button) findViewById(R.id.refresh_weather);
+		switchCity.setOnClickListener(this);
+		refreshWeather.setOnClickListener(this);
 		String countyCode = getIntent().getStringExtra("county_code");
 		
 		if(!TextUtils.isEmpty(countyCode)) {
@@ -85,34 +87,30 @@ public class WeatherActivity extends Activity implements OnClickListener {
 			showWeather();
 		}
 		
-//		switchCity.setOnClickListener(this);
-//		refreshWeather.setOnClickListener(this);
 	}
 
 
 	@Override
 	public void onClick(View v) {
-//		switch (v.getId()) {
-//		case R.id.swtch_city:
-//			Intent intent = new Intent(this,ChooseAreaActivity.class);
-//			intent.putExtra("from_weather_activity", true);
-//			startActivity(intent);
-//			finish();
-//			
-//			break;
-//		case R.id.refresh_weather:
-//			publishText.setText("同步中...");
-//			SharedPreferences prefs = 
-//					PreferenceManager.getDefaultSharedPreferences(this);
-//			String weatherCode = prefs.getString("weather_code", "");
-//			if(!TextUtils.isEmpty(weatherCode)) {
-//				queryWeatherInfo(weatherCode);
-//				
-//			}
-//			break;
-//		default:
-//			break;
-//		}
+		switch (v.getId()) {
+		case R.id.switch_city:
+			Intent intent = new Intent(this,ChooseAreaActivity.class);
+			intent.putExtra("from_weather_activity", true);
+			startActivity(intent);
+			finish();
+			break;
+		case R.id.refresh_weather:
+			publishText.setText("同步中...");
+			SharedPreferences prefs = 
+					PreferenceManager.getDefaultSharedPreferences(this);
+			String weatherCode = prefs.getString("weather_code", "");
+			if(!TextUtils.isEmpty(weatherCode)) {
+				queryWeatherInfo(weatherCode);
+			}
+			break;
+		default:
+			break;
+		}
 		
 	}
 	
@@ -188,7 +186,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		
 		SharedPreferences prefs = 
 				PreferenceManager.getDefaultSharedPreferences(this);
-		cityNameText.setText(prefs.getString("city_ame", ""));
+		cityNameText.setText(prefs.getString("city_name", ""));
 		temp1.setText(prefs.getString("temp1", ""));
 		temp2.setText(prefs.getString("temp2", ""));
 		weatherDespText.setText(prefs.getString("weather_desp", ""));
